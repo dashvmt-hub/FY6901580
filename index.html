@@ -145,6 +145,12 @@ To ensure the water remains clean during distribution, maintenance and monitorin
 <h3 id="References">References</h3>
  <p>
  <pre>
+  Hijnen, W. A., Beerendonk, E. F., & Medema, G. J. (2006). Inactivation of pathogens in water by ultraviolet disinfection and ozonation. Water Research, 40(1), 13-22.
+  Jobs et al, 2001; Emerick et al, 2000; Qualls & Johnson, 1985; Qualls et al, 1983 
+  Dezuane, J. (1996). Handbook of drinking water quality pg 1- 5
+  Viessman jR, W., Lewis, G. L.(2002) pg 1-8
+  Bert, A. 2024 Nordic-tec
+ 
  </pre>
 </p>
 
@@ -183,9 +189,49 @@ google.charts.setOnLoadCallback(drawChart);
    chart.draw(data, options);
   }
  </script> 
- 
+ <div id="last-updated">Loading last update time...</div>div>
+ <!-- Verify Button -->
+ <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+  Verify Last Modified Time
+ </button>
+ <script>
+  async function getLastUpdatedTime() {
+   const username = 'dashvmt';
+   const repo = 'FY6901580';
 
+   const url = 'https://api.github.com/repos/${username}/${repo}/commits';
+   try {
+    const response = await fetch(url, {
+        method:'GET',
+        headers: {
+         'Accept': 'application/vnd.github.v3+json',
+        }
+    });
+    if (!response.ok) {
+       throw new Error('Error fetching data: ${response.status} - ${response.statusText}');
+    }
+    const commits = await response.json();
+    if (commits && commits.length >0) {
+     cinst lastCommitDate = new Date(commitd[0].commit.committer.date);
 
+     document.getElementById('last-updated').innerText = 'Last Modified Time: ${lastCommitDate.toLocaleString()}';
+    } else {
+     document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+    }
+   } catch (error) {
+       console.error('Error fetching the last updated time:', error);
+        document.getElementBtId('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+   }
+  }
+
+  async function verifyLastUpdatedTime() {
+    document.getElementeById('last-updated').innerText =  'Verifying...';
+    await getLastUpdatedTime();
+   alert("Last modified time has been successfully verified from GitHub API.");
+  }
+
+   window.onload = getLastUpdatedTime;
+ </script>
 
 
 
