@@ -149,67 +149,48 @@ To ensure the water remains clean during distribution, maintenance and monitorin
 </p>
 
  <title>UV radiation to particle interference</title>
- <script type="text/javascript" src=https://www.gstatic.com/charts/loader.js></script>
- <div id="chart_div"></div>
- <script type="text/javascript">
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <div id="chart_div" style="width:600px;height:400px";></div>
+<script>
+google.charts.load('current',{'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
   function drawChart() {
    var data = new google.visualization.DataTable();
-
-   data.addColumn('number', 'Wavelength(nm)')
-   data.addColumn('number', 'Absorbance (a.u.)')
+   data.addColumn('number', 'Wavelength(nm)');
+   data.addColumn('number', 'Absorbance (a.u.)');
 
     data.addRows([
-     [0,2.5]
-     [65,2.0]
-     [100,1.5]
-     [115,1.0]
-     [125,0.5]
-     [200,0.2]
-     [250,0.17]
-     [275,0.15]
-     [300,0.12]
+     [0,2.5],
+     [65,2.0],
+     [100,1.5],
+     [115,1.0],
+     [125,0.5],
+     [200,0.2],
+     [250,0.17],
+     [275,0.15],
+     [300,0.12],
      [350,0]
     ]);
+    
   var options = {
    title: 'UV radiation absorbtion in pure water',
    hAxis: { title: 'Wavelength (nm)' },
    vAxis: { title: 'Absorbance(a.u.)' }
-  };var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+  };
+  
+  var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
    chart.draw(data, options);
   }
  </script> 
  
- <p id="date&time"></p>
- <script>
 
-  //Javascript to display the date and time on my webpage
 
-  const d = new Date();
-  document.getElementByld("date&time").innerHTML = d;
 
- </script>
-</html>
-<!DOCTYPE html>
-<html>
- <head>
-  <title>Change Button Colour</title>
- </head>
- <body>
-  <button id="colorButton">Click me to change colour</button>
-  <script>
-   //Get a reference to the button element
-   var button = document.getElementByld("colorButton");
 
-   //Function to change the button color
-   function change(){
-    //Generate a random color(hexadecimal)
-    var randomColor ="#" + Math.floor(Math.ramdom()*16777215).toString(16);
 
-    //Set the button's background color to the random color
-    button.style.backgroundColor = randomColor;
-   }
-   //Add a click event listener to the button
-   button.addEventListener("click", changeColor) 
-  </script>
+ 
  </body>
 </html>
+
+
